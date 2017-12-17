@@ -4,6 +4,7 @@ import * as queryString from "query-string";
 import * as rp from "request-promise-native";
 import * as winston from "winston";
 import {
+  CANCEL_ORDER_API,
   GET_INFO_API,
   GET_ORDER,
   OPEN_ORDERS_API,
@@ -13,6 +14,7 @@ import {
   TRANS_HISTORY_API,
 } from ".";
 import {
+  ICancelOrderArgs,
   IGetOrderArgs,
   IOpenOrderArgs,
   IOrderHistoryArgs,
@@ -56,6 +58,20 @@ export class BitcoinCoIdService {
   // #endregion
 
   // #region Private API methods
+
+  /**
+   * Cancel an existing open order.
+   * @param {*} cancelOrderArgs:
+   *        {
+   *          pair: "Required: Yes. Desc: Pair to get the information from. Value: Constant in pair.constant.js.
+   *                 Default: btc_idr "
+   *          order_id: "Required: Yes. Desc: Order ID. Value: integer"
+   *          type: "Required: Yes. Desc: transaction type (buy/sell). Value: buy/sell."
+   *        }
+   */
+  public cancelOrder(cancelOrderArgs: ICancelOrderArgs) {
+    return this.callPrivateApi(CANCEL_ORDER_API, cancelOrderArgs);
+  }
 
   /**
    * Gives user's balances and server's timestamp

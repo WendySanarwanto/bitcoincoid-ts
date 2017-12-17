@@ -1,3 +1,4 @@
+export const CANCEL_ORDER_API = `cancelOrder`;
 export const GET_INFO_API = `getInfo`;
 export const GET_ORDER = `getOrder`;
 export const OPEN_ORDERS_API = `openOrders`;

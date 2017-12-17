@@ -1,3 +1,9 @@
+export interface ICancelOrderArgs {
+  order_id: number;
+  pair: string;
+  type: string;
+}
+
 export interface IGetOrderArgs {
   order_id: number;
   pair: string;
