@@ -1,0 +1,37 @@
+{
+  "name": "bitcoincoid-ts",
+  "version": "0.0.1",
+  "description": "Typescript Wrapper library of Bitcoin.co.id's API calls.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npm run lint",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "tsc": "tsc",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+  },
+  "keywords": [
+    "ts",
+    "bitcoin.co.id"
+  ],
+  "author": "Wendy Sanarwanto (wendy.sanarwanto@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.0.10",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.5.1",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "ts-node": "^4.0.2",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "typescript-eslint-parser": "^11.0.0"
+  },
+  "dependencies": {
+    "moment": "^2.20.0",
+    "query-string": "^5.0.1",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "winston": "^2.4.0"
+  }
+}
