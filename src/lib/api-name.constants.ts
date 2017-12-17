@@ -6,3 +6,4 @@ export const ORDER_HISTORY_API = `orderHistory`;
 export const TRADE_API = `trade`;
 export const TRANS_HISTORY_API = `transHistory`;
 export const TRADE_HISTORY_API = `tradeHistory`;
+export const WITHDRAW_COIN_API = `withdrawCoin`;

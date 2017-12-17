@@ -12,6 +12,7 @@ import {
   TRADE_API,
   TRADE_HISTORY_API,
   TRANS_HISTORY_API,
+  WITHDRAW_COIN_API,
 } from ".";
 import {
   ICancelOrderArgs,
@@ -20,6 +21,7 @@ import {
   IOrderHistoryArgs,
   ITradeArgs,
   ITradeHistoryArgs,
+  IWithdrawCoinArgs,
 } from "./contracts/api-args";
 import * as Pairs from "./pair.constants";
 
@@ -159,6 +161,26 @@ export class BitcoinCoIdService {
    */
   public tradeHistory(tradeHistoryArgs: ITradeHistoryArgs) {
     return this.callPrivateApi(TRADE_HISTORY_API, tradeHistoryArgs);
+  }
+
+  /**
+   * Withdrawing assets (except IDR)
+   * @param {*} withdrawCoinArgs:
+   *         {
+   *           currency: "Required: Yes. Desc: Currency to withdraw. Value: btc, ltc, xrp, doge, eth, etc. "
+   *           withdraw_address: "Required: Yes. Desc: Receiver address. Value: a valid address."
+   *           withdraw_amount: "Required: Yes. Desc: Amount to send. Value: number."
+   *           withdraw_memo: "Rerquired: Yes. Desc: Memo to be sent to the receiver, if supported by
+   *                           the asset platform. Exchanges use this memo for accepting deposits for
+   *                           certain assets. Example: Destination Tag (for Ripple), Message (for NXT)
+   *                           Memo (for BitShares). Value: a valid memo/message/destination tag."
+   *           request_id: "Required: Yes. Desc: Custom string you need to provide to  identify
+   *                        each withdrawal request. request_id will be passed to callback call
+   *                        so your system can identify the request. Value: alphanumeric, max length 255/"
+   *         }
+   */
+  public withdrawCoin(withdrawCoinArgs: IWithdrawCoinArgs) {
+    return this.callPrivateApi(WITHDRAW_COIN_API, withdrawCoinArgs);
   }
 
   // #endregion

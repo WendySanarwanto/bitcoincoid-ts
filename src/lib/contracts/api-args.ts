@@ -36,3 +36,11 @@ export interface ITradeHistoryArgs {
   since?: number;
   end?: number;
 }
+
+export interface IWithdrawCoinArgs {
+  currency: string;
+  request_id: string;
+  withdraw_address: string;
+  withdraw_amount: number;
+  withdraw_memo?: string;
+}
