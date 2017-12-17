@@ -13,6 +13,14 @@ export interface IOrderHistoryArgs {
   pair: string;
 }
 
+export interface ITradeArgs {
+  pair: string;
+  type: string;
+  price: number;
+  idr?: number;
+  btc?: number;
+}
+
 export interface ITradeHistoryArgs {
   pair: string;
   count?: number;

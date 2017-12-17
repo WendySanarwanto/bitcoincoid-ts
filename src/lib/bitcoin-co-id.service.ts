@@ -8,6 +8,7 @@ import {
   GET_ORDER,
   OPEN_ORDERS_API,
   ORDER_HISTORY_API,
+  TRADE_API,
   TRADE_HISTORY_API,
   TRANS_HISTORY_API,
 } from ".";
@@ -15,6 +16,7 @@ import {
   IGetOrderArgs,
   IOpenOrderArgs,
   IOrderHistoryArgs,
+  ITradeArgs,
   ITradeHistoryArgs,
 } from "./contracts/api-args";
 import * as Pairs from "./pair.constants";
@@ -99,6 +101,22 @@ export class BitcoinCoIdService {
    */
   public orderHistory(orderHistoryArgs: IOrderHistoryArgs) {
     return this.callPrivateApi(ORDER_HISTORY_API, orderHistoryArgs);
+  }
+
+  /**
+   * Opening a new order.
+   * @param {*} tradeArgs :
+   *         {
+   *            pair: "Required: Yes. Desc: Pair to get the information from. Value: Constant in pair.constant.js.
+   *                   Default: btc_idr".
+   *            type: "Required: Yes. Desc: transaction type (buy or sell). Value: 'buy' or 'sell'."
+   *            price: "Required: Yes. Desc: transaction type (buy or sell). Value: 'buy' or 'sell'."
+   *            idr: "Required: Only when buying BTC. Desc: Amount in IDR. Value: "
+   *            btc: "Required: Only when selling BTC. Desc: Amount in BTC to sell. Value: number."
+   *         }
+   */
+  public trade(tradeArgs: ITradeArgs) {
+    return this.callPrivateApi(TRADE_API, tradeArgs);
   }
 
   /**
