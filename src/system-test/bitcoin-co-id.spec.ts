@@ -140,4 +140,53 @@ describe("BitcoinCoIdService", () => {
 
     return -1;
   }
+
+  it("gives ticker information of a cryptocurrency", async () => {
+    // Arrange
+    const pair = XRP_IDR;
+
+    // Act
+    const response = await bitcoinCoIdService.ticker(pair);
+
+    // Assert
+    expect(response).to.be.not.equal(undefined);
+    expect(response).to.be.not.equal(null);
+    expect(response.ticker).to.be.not.equal(undefined);
+    expect(response.ticker).to.be.not.equal(null);
+    expect(response.ticker.server_time).to.be.greaterThan(0);
+
+    winston.debug("response = \n", JSON.stringify(response, "", 2));
+  });
+
+  it("gives trades information of a cryptocurrency", async () => {
+    // Arrange
+    const pair = XRP_IDR;
+
+    // Act
+    const response = await bitcoinCoIdService.trades(pair);
+
+    // Assert
+    expect(response).to.be.not.equal(undefined);
+    expect(response).to.be.not.equal(null);
+    expect(Array.isArray(response) && response.length > 0).to.be.equal(true);
+    winston.debug("response = \n", JSON.stringify(response, "", 2));
+  });
+
+  it("gives a list of trading depth info (buy/sell).", async () => {
+    // Arrange
+    const pair = XRP_IDR;
+
+    // Act
+    const response = await bitcoinCoIdService.depth(pair);
+
+    // Assert
+    expect(response).to.be.not.equal(undefined);
+    expect(response).to.be.not.equal(null);
+    expect(Array.isArray(response.buy) && response.buy.length > 0).to.be.equal(true);
+    expect(Array.isArray(response.sell) && response.sell.length > 0).to.be.equal(true);
+    winston.debug("response.buy = \n", JSON.stringify(response.buy, "", 2));
+    winston.debug("response.sell = \n", JSON.stringify(response.sell, "", 2));
+    winston.debug("response.buy.length = ", response.buy.length);
+    winston.debug("response.sell.length = ", response.sell.length);
+  });
 });

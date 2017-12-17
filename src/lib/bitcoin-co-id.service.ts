@@ -19,16 +19,47 @@ import {
 } from "./contracts/api-args";
 import * as Pairs from "./pair.constants";
 
+const PUBLIC_API_PATH = `https://vip.bitcoin.co.id/api/`;
 const TRADE_API_PATH = `https://vip.bitcoin.co.id/tapi/`;
 
 export class BitcoinCoIdService {
   constructor(private apiKey: string, private secretKey: string) { }
 
+  // #region Public API methods
+
+  /**
+   * Get ticker information of a cryptocurrency by specified pair.
+   * @param pair Define the cryptocurrency's pair. E.g. xrp_idr, btc_idr
+   */
+  public ticker(pair) {
+    return this.callPublicApi(pair, "/ticker");
+  }
+
+  /**
+   * Get a list of buy & sell trades that are still going on Bitcoin.co.id
+   * @param pair Define the cryptocurrency's pair. E.g. xrp_idr, btc_idr
+   */
+  public trades(pair) {
+    return this.callPublicApi(pair, "/trades");
+  }
+
+  /**
+   * Get a list of trading depth info (buy/sell).
+   * @param pair Define the cryptocurrency's pair. E.g. xrp_idr, btc_idr
+   */
+  public depth(pair) {
+    return this.callPublicApi(pair, "/depth");
+  }
+
+  // #endregion
+
+  // #region Private API methods
+
   /**
    * Gives user's balances and server's timestamp
    */
   public getInfo() {
-    return this.callApi(GET_INFO_API);
+    return this.callPrivateApi(GET_INFO_API);
   }
 
   /**
@@ -41,7 +72,7 @@ export class BitcoinCoIdService {
    *        }
    */
   public getOrder(getOrderArgs: IGetOrderArgs) {
-    return this.callApi(GET_ORDER, getOrderArgs);
+    return this.callPrivateApi(GET_ORDER, getOrderArgs);
   }
 
   /**
@@ -53,7 +84,7 @@ export class BitcoinCoIdService {
    *        }
    */
   public openOrders(openOrdersArg?: IOpenOrderArgs) {
-    return this.callApi(OPEN_ORDERS_API, openOrdersArg);
+    return this.callPrivateApi(OPEN_ORDERS_API, openOrdersArg);
   }
 
   /**
@@ -67,14 +98,14 @@ export class BitcoinCoIdService {
    *        }
    */
   public orderHistory(orderHistoryArgs: IOrderHistoryArgs) {
-    return this.callApi(ORDER_HISTORY_API, orderHistoryArgs);
+    return this.callPrivateApi(ORDER_HISTORY_API, orderHistoryArgs);
   }
 
   /**
    * Gives list of deposits and withdrawals of all currencies.
    */
   public transHistory() {
-    return this.callApi(TRANS_HISTORY_API);
+    return this.callPrivateApi(TRANS_HISTORY_API);
   }
 
   /**
@@ -93,20 +124,36 @@ export class BitcoinCoIdService {
    *        }
    */
   public tradeHistory(tradeHistoryArgs: ITradeHistoryArgs) {
-    return this.callApi(TRADE_HISTORY_API, tradeHistoryArgs);
+    return this.callPrivateApi(TRADE_HISTORY_API, tradeHistoryArgs);
   }
+
+  // #endregion
 
   // #region Helper Methods
 
   /**
-   * A helper which wrap the details of calling Bitcoin.co.id's API
+   * A helper which wrap the details of calling Bitcoin.co.id's Trading API
    * @param {string} name Name of the API
    * @param {*} args the API's argument.
    */
-  private callApi(name: string, args?: any) {
+  private callPrivateApi(name: string, args?: any) {
     const body = this.createPostData(name, args);
     const headers = this.createHeaders(body);
     return this.doPost(body, headers);
+  }
+
+  /**
+   * A helper which wrap details of calling Bitcoin.co.id's public API
+   * @param pair Define the cryptocurrency's pair. E.g. xrp_idr, btc_idr
+   * @param path Path of the public API to invoke.
+   */
+  private callPublicApi(pair: string, path: string) {
+    const apiUrl = `${PUBLIC_API_PATH}${pair}${path}`;
+    return rp({
+      json: true,
+      method: "get",
+      uri: apiUrl,
+    });
   }
 
   /**
