@@ -2,12 +2,19 @@
   "name": "bitcoincoid-ts",
   "version": "0.0.1",
   "description": "Typescript Wrapper library of Bitcoin.co.id's API calls.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc && npm run lint",
+    "clean": "rimraf ./dist",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "build:dist": "npm run clean && npm run build && cp README.md dist/ && cp LICENSE dist/ && cp package.json dist/",
+    "publish:dist": "npm run build:dist && cd dist && npm publish && cd ..",
     "tsc": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts"
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873/"
   },
   "keywords": [
     "ts",
@@ -21,6 +28,7 @@
     "@types/node": "^8.5.1",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
+    "rimraf": "^2.6.2",
     "ts-node": "^4.0.2",
     "tsc": "^1.20150623.0",
     "tslint": "^5.8.0",

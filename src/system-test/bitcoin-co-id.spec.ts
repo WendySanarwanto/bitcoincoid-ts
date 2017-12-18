@@ -2,12 +2,13 @@ import { expect } from "chai";
 import "mocha";
 import { isArray } from "util";
 import * as winston from "winston";
-import { BitcoinCoIdService, XRP_BTC } from "../";
 import {
+  BitcoinCoIdService,
   IGetOrderArgs,
   IOpenOrderArgs,
   IOrderHistoryArgs,
   ITradeHistoryArgs,
+  XRP_BTC,
   XRP_IDR,
 } from "../";
 
@@ -34,7 +35,8 @@ describe("BitcoinCoIdService", () => {
     expect(response.success).to.be.equal(1);
     expect(response.return.balance).to.be.not.equal(undefined);
     expect(response.return.server_time).to.be.not.equal(0);
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
   });
 
   it("get specific order details", async () => {
@@ -53,7 +55,8 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(null);
     expect(response.success).to.be.equal(1);
     expect(response.return.order.order_id).to.be.equal(orderId.toString());
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
 
   });
 
@@ -72,7 +75,8 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(null);
     expect(response.success).to.be.equal(1);
     expect( isArray(response.return.orders)).to.be.equal(true);
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
 
     // Cleanup
     // TODO: Cancel the XRP Order.
@@ -93,7 +97,8 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(null);
     expect(response.success).to.be.equal(1);
     expect( isArray(response.return.orders) && response.return.orders.length > 0).to.be.equal(true);
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
 
   });
 
@@ -105,7 +110,8 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(undefined);
     expect(response).to.be.not.equal(null);
     expect(response.success).to.be.equal(1);
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
 
   });
 
@@ -122,7 +128,8 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(undefined);
     expect(response).to.be.not.equal(null);
     expect(response.success).to.be.equal(1);
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
 
   });
 
@@ -155,7 +162,8 @@ describe("BitcoinCoIdService", () => {
     expect(response.ticker).to.be.not.equal(null);
     expect(response.ticker.server_time).to.be.greaterThan(0);
 
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
   });
 
   it("gives trades information of a cryptocurrency", async () => {
@@ -169,7 +177,8 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(undefined);
     expect(response).to.be.not.equal(null);
     expect(Array.isArray(response) && response.length > 0).to.be.equal(true);
-    winston.debug("response = \n", JSON.stringify(response, "", 2));
+    // tslint:disable-next-line:quotemark
+    winston.debug("response = \n", JSON.stringify(response, '', 2));
   });
 
   it("gives a list of trading depth info (buy/sell).", async () => {
@@ -184,7 +193,9 @@ describe("BitcoinCoIdService", () => {
     expect(response).to.be.not.equal(null);
     expect(Array.isArray(response.buy) && response.buy.length > 0).to.be.equal(true);
     expect(Array.isArray(response.sell) && response.sell.length > 0).to.be.equal(true);
+    // tslint:disable-next-line:quotemark
     winston.debug("response.buy = \n", JSON.stringify(response.buy, "", 2));
+    // tslint:disable-next-line:quotemark
     winston.debug("response.sell = \n", JSON.stringify(response.sell, "", 2));
     winston.debug("response.buy.length = ", response.buy.length);
     winston.debug("response.sell.length = ", response.sell.length);
