@@ -64,8 +64,33 @@ Below is the structure of this Node library:
       |- index.ts      
 ```
 
-TODO: Explain details of the structure.
+* `index.ts` - within the library's root folder & subfolders, we placed `index.ts` for exporting any types reside in the folder to up one level above of it. This will allow developers to import any types within the library, regardless of where they are being placed within. Example: As a developer we need to import `IOrderHistoryArgs` interface and `XRP_IDR` constant, to be used for calling the `BitcoinCoIdService`'s `orderHistory` method. The common way to do this is by writing these lines:
 
+```Typescript
+  import { BitcoinCoIdService } from 'bitcoincoid-ts';
+  import { IOrderHistoryArgs } from 'bitcoincoid-ts/lib/contracts/api-args';
+  import { XRP_IDR } from 'bitcoincoid-ts/lib/api-name.constants';
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; However, we can write these lines to import these type & constant too, as shown in this following snippet:
+
+```Typescript
+  import {
+    BitcoinCoIdService,
+    IOrderHistoryArgs,
+    XRP_IDR,
+  } from 'bitcoincoid-ts';
+```
+
+* `lib` folder - This is the folder that contain all of this library's files and a subfolder  which hold method argument types. All of these files will be explained in next points.
+
+* `api-name.constants.ts` - TODO: Explain this
+
+* `bitcoin-co-id.service.ts` - TODO: Explain this
+
+* `pair.constants.ts` - TODO: Explain this
+
+* `contracts\api-args.ts` - TODO: Explain this 
 
 ## How to run the system test of this library ?
 
@@ -74,3 +99,11 @@ TBD
 ## Found bug(s) / got idea to improve this library to be better ?
 
 TBD
+
+## Donations
+
+Do you find this library is useful in your project and would like to appreaciate this work ? You could do it through donating some of your crypto coins /tokens into these wallets here:
+
+* Ripple/XRP: rhwpiuXMfysWRSfJ9KoQaDA4fR7ggYiNXk
+
+* ARK:        Aefy4SSMDa4vidVQdDAU5aMwhUffypCkqB
