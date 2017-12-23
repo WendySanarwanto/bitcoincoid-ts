@@ -41,7 +41,7 @@ The original API documentation can be downloaded from [here](https://vip.bitcoin
         new BitcoinCoIdService(BITCOINCOID_API_KEY, BITCOINCOID_SECRET_KEY);
       const response = await bitcoinCoIdService.orderHistory(orderHistoryArgs);
 
-      // ... some code to proses the response
+      // ... some code to process the response
     }
   ```
 
@@ -94,7 +94,7 @@ Below is the structure of this Node library:
 
 ## How to run the system test of this library ?
 
-* Get the Bitcoin.co.id's API Key & Secret Key from your Bitcoin.co.id's account page. Then, export them as environment variables in your machine. Example:
+* Get the Bitcoin.co.id's API Key & Secret Key from your Bitcoin.co.id's account page. Then, export them as environment variables in your machine, as in the following code:
 
   ```bash
     export BCI_AK=yourbitcoincoidApiKey
