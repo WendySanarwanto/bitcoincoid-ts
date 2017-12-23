@@ -1,6 +1,6 @@
 {
   "name": "bitcoincoid-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Typescript Wrapper library of Bitcoin.co.id's API calls.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

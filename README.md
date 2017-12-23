@@ -97,8 +97,8 @@ Below is the structure of this Node library:
 * Get the Bitcoin.co.id's API Key & Secret Key from your Bitcoin.co.id's account page. Then, export them as environment variables in your machine. Example:
 
   ```bash
-    export BITCOINCOID_API_KEY=yourbitcoincoidApiKey
-    export BITCOINCOID_SECRET_KEY=yourbitcoincoidSecretKey
+    export BCI_AK=yourbitcoincoidApiKey
+    export BCI_SK=yourbitcoincoidSecretKey
   ```
 
 * Clone this repository into your machine through running this command on a terminal window: `git clone https://github.com/WendySanarwanto/bitcoincoid-ts.git`
