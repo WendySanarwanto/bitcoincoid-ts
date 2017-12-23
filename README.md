@@ -25,25 +25,25 @@ The original API documentation can be downloaded from [here](https://vip.bitcoin
   } from 'bitcoincoid-ts';
   ```
 * In your method that need to call the `orderHistory` API, you will add these lines to call the API:
-```Typescript
+  ```Typescript
 
-  // Assumed, we have put API KEY & SECRET KEY into environment variables
-  const BITCOINCOID_API_KEY = process.env.BCI_AK;
-  const BITCOINCOID_SECRET_KEY = process.env.BCI_SK;
+    // Assumed, we have put API KEY & SECRET KEY into environment variables
+    const BITCOINCOID_API_KEY = process.env.BCI_AK;
+    const BITCOINCOID_SECRET_KEY = process.env.BCI_SK;
 
-  async myAwesomeApi() {
-    // ...some code    
-    const orderHistoryArgs: IOrderHistoryArgs = {
-      pair: XRP_IDR,
-    };
+    async myAwesomeApi() {
+      // ...some code    
+      const orderHistoryArgs: IOrderHistoryArgs = {
+        pair: XRP_IDR,
+      };
 
-    const bitcoinCoIdService = 
-      new BitcoinCoIdService(BITCOINCOID_API_KEY, BITCOINCOID_SECRET_KEY);
-    const response = await bitcoinCoIdService.orderHistory(orderHistoryArgs);
+      const bitcoinCoIdService = 
+        new BitcoinCoIdService(BITCOINCOID_API_KEY, BITCOINCOID_SECRET_KEY);
+      const response = await bitcoinCoIdService.orderHistory(orderHistoryArgs);
 
-    // ... some code to proses the response
-  }
-```
+      // ... some code to proses the response
+    }
+  ```
 
 * See the original API documentation from [here](https://vip.bitcoin.co.id/downloads/BITCOINCOID-API-DOCUMENTATION.pdf), to get a list of available methods to call.
 
@@ -66,21 +66,21 @@ Below is the structure of this Node library:
 
 * `index.ts` - within the library's root folder & subfolders, we placed `index.ts` for exporting any types reside in the folder to up one level above of it. This will allow developers to import any types within the library, regardless of where they are being placed within. Example: As a developer we need to import `IOrderHistoryArgs` interface and `XRP_IDR` constant, to be used for calling the `BitcoinCoIdService`'s `orderHistory` method. The common way to do this is by writing these lines:
 
-```Typescript
-  import { BitcoinCoIdService } from 'bitcoincoid-ts';
-  import { IOrderHistoryArgs } from 'bitcoincoid-ts/lib/contracts/api-args';
-  import { XRP_IDR } from 'bitcoincoid-ts/lib/api-name.constants';
-```
+  ```Typescript
+    import { BitcoinCoIdService } from 'bitcoincoid-ts';
+    import { IOrderHistoryArgs } from 'bitcoincoid-ts/lib/contracts/api-args';
+    import { XRP_IDR } from 'bitcoincoid-ts/lib/api-name.constants';
+  ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; However, we can write these lines to import these type & constant too, as shown in this following snippet:
 
-```Typescript
-  import {
-    BitcoinCoIdService,
-    IOrderHistoryArgs,
-    XRP_IDR,
-  } from 'bitcoincoid-ts';
-```
+  ```Typescript
+    import {
+      BitcoinCoIdService,
+      IOrderHistoryArgs,
+      XRP_IDR,
+    } from 'bitcoincoid-ts';
+  ```
 
 * `lib` folder - This is the folder that contain all of this library's files and a subfolder  which hold method argument types. All of these files will be explained in next points.
 
@@ -96,10 +96,10 @@ Below is the structure of this Node library:
 
 * Get the Bitcoin.co.id's API Key & Secret Key from your Bitcoin.co.id's account page. Then, export them as environment variables in your machine. Example:
 
-```bash
-  export BITCOINCOID_API_KEY=yourbitcoincoidApiKey
-  export BITCOINCOID_SECRET_KEY=yourbitcoincoidSecretKey
-```
+  ```bash
+    export BITCOINCOID_API_KEY=yourbitcoincoidApiKey
+    export BITCOINCOID_SECRET_KEY=yourbitcoincoidSecretKey
+  ```
 
 * Clone this repository into your machine through running this command on a terminal window: `git clone https://github.com/WendySanarwanto/bitcoincoid-ts.git`
 
