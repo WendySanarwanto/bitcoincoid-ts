@@ -84,21 +84,33 @@ Below is the structure of this Node library:
 
 * `lib` folder - This is the folder that contain all of this library's files and a subfolder  which hold method argument types. All of these files will be explained in next points.
 
-* `api-name.constants.ts` - TODO: Explain this
+* `api-name.constants.ts` - Contains the API Name constants that are internally referenced by `bitcoin-co-id.service.ts`. Therefore, developer should not need to use these constants
 
-* `bitcoin-co-id.service.ts` - TODO: Explain this
+* `bitcoin-co-id.service.ts` - The main class that wraps calls to [Bitcoin.co.id](https://www.bitcoin.co.id/)'s API as public methods. The naming of Bitcoin.co.id's API is retained on each of these public methods. For example: A call to `orderHistory` API can be done through invoking `orderHistory` method of `bitcoin-co-id.service.ts`. The original API documentation can be downloaded from [here](https://vip.bitcoin.co.id/downloads/BITCOINCOID-API-DOCUMENTATION.pdf).
 
-* `pair.constants.ts` - TODO: Explain this
+* `pair.constants.ts` - Contains a list of Constants which define a pair of cryptocurrencies. On several API methods, some of them requires one of these constants to be supplied in as one of their argument. In case you will need to call one of this API Methods (e.g. `getOrder` method), you can refer and use this constant instead of typing them as literal string.
 
-* `contracts\api-args.ts` - TODO: Explain this 
+* `contracts\api-args.ts` - Contains a interfaces which represent the API's Request contracts. When calling a `bitcoin-co-id.service.ts`'s method which takes an argument object, the argument should be typed as one of these defined contract. Example: you need to import `IOrderHistoryArgs` interface in order to call `bitcoin-co-id.service.ts`'s `orderHistory` method, because the method accepts argument that is typed as `IOrderHistoryArgs` interface.
 
 ## How to run the system test of this library ?
 
-TBD
+* Get the Bitcoin.co.id's API Key & Secret Key from your Bitcoin.co.id's account page. Then, export them as environment variables in your machine. Example:
+
+```bash
+  export BITCOINCOID_API_KEY=yourbitcoincoidApiKey
+  export BITCOINCOID_SECRET_KEY=yourbitcoincoidSecretKey
+```
+
+* Clone this repository into your machine through running this command on a terminal window: `git clone https://github.com/WendySanarwanto/bitcoincoid-ts.git`
+
+* Change directory to the cloned project's directory. Then run `npm install` to install all required dependencies.
+
+* Run `npm run test` for running the system test.
+
 
 ## Found bug(s) / got idea to improve this library to be better ?
 
-TBD
+When using this library, you may find something is not working as expected or you have an idea to improve this library to be better. Feel free to report issues that you may find when using this library or you could submit your pull request of your enhancement idea / bug fixes.
 
 ## Donations
 
